@@ -1,18 +1,15 @@
 //
-//  XJFFmpegManager.m
+//  xj_ffmpeg_manager.cpp
 //  XJLive
 //
-//  Created by 万旭杰 on 2020/4/20.
+//  Created by 万旭杰 on 2020/4/28.
 //  Copyright © 2020 万旭杰. All rights reserved.
 //
-#import <libavformat/avformat.h>
-#import <libavcodec/avcodec.h>
-#import <libavdevice/avdevice.h>
-#import "XJFFmpegManager.h"
-#import <VideoToolbox/VideoToolbox.h>
 
-static const NSString *kInputFomartName = @"avfoundation";
-@implementation XJFFmpegManager
+#include "xj_ffmpeg_manager.h"
+#include <libavformat/avformat.h>
+#include <libavcodec/avcodec.h>
+#include <libavdevice/avdevice.h>
 
 // FFmpeg采集音频数据
 /*
@@ -23,45 +20,34 @@ static const NSString *kInputFomartName = @"avfoundation";
     2. 从设备中获取数据包，判断音频或者视频数据
     3. 输出到文件，保存音频数据
 */
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        av_log_set_level(AV_LOG_DEBUG);
-        // a. 注册设备
-        av_register_all();
-        avformat_network_init();
-    }
-    return self;
+
+static const char* kInputFomartName = "avfoundation";
+namespace XJFFmpeg {
+class AudioManager {
+    
+AudioManager() {
+    av_log_set_level(AV_LOG_DEBUG);
+    av_register_all();
+    avformat_network_init();
 }
 
-+ (XJFFmpegManager *)sharedManager {
-    static dispatch_once_t predicate;
-    static XJFFmpegManager * sharedManager;
-    dispatch_once(&predicate, ^{
-        sharedManager = [[XJFFmpegManager alloc] init];
-    });
-    return sharedManager;
-}
-
-- (void)readAudio:(NSString*)audioUrl {
+void ReadAudio(const char*url) {
     // AV上下文
     AVFormatContext *context = avformat_alloc_context();
 
     // b. 设置采集方式 Mac avfoundation / Windows dshow / Linux alsa
-    AVInputFormat *inputFormat = av_find_input_format(kInputFomartName.UTF8String);
+    AVInputFormat *inputFormat = av_find_input_format(kInputFomartName);
 
     // 设备类型 [video device]:[audio device]
-    const char* url = audioUrl.UTF8String;
 
     // c. 打开音频设备
-    int ret = avformat_open_input(&context, url, inputFormat, nil);
+    int ret = avformat_open_input(&context, url, inputFormat, nullptr);
 
     if (ret < 0) {
         // fail
         char errors[1024];
         av_strerror(ret, errors, 1024);
-        NSLog(@"errors: %s", errors);
+        printf("errors: %s", errors);
         avformat_close_input(&context);
         return;
     }
@@ -82,19 +68,20 @@ static const NSString *kInputFomartName = @"avfoundation";
     avformat_close_input(&context);
 }
 
-- (void)recordAudio {
+void RecordAudio() {
     AVFormatContext *context = avformat_alloc_context();
-    AVInputFormat *inputFormat = av_find_input_format(kInputFomartName.UTF8String);
-    int ret = avformat_open_input(&context, ":0", inputFormat, nil);
+    AVInputFormat *inputFormat = av_find_input_format(kInputFomartName);
+    int ret = avformat_open_input(&context, ":0", inputFormat, nullptr);
     if (ret < 0) {
         char errors[1024];
         av_strerror(ret, errors, 1024);
-        NSLog(@"errors: %s", errors);
+        printf("errors: %s", errors);
         avformat_close_input(&context);
         return;
     }
-    
     avformat_close_input(&context);
 }
+    
+};
+}
 
-@end

@@ -15,7 +15,8 @@
 		1A1DEC14244E0ABA008AE67A /* libavfilter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A1DEC0D244E0ABA008AE67A /* libavfilter.a */; };
 		1A1DEC15244E0ABA008AE67A /* libswresample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A1DEC0E244E0ABA008AE67A /* libswresample.a */; };
 		1A1DEC17244E0CB4008AE67A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A1DEC16244E0CB4008AE67A /* AudioToolbox.framework */; };
-		1AC96140244CBBB300077349 /* XJFFmpegManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC9613F244CBBB300077349 /* XJFFmpegManager.m */; };
+		1A41CCF7245754DB00CA190E /* xj_ffmpeg_manager.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1A41CCF5245754DB00CA190E /* xj_ffmpeg_manager.cc */; };
+		1AC96140244CBBB300077349 /* XJFFmpegManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1AC9613F244CBBB300077349 /* XJFFmpegManager.mm */; };
 		1AC961CC244CBDD600077349 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC961CB244CBDD600077349 /* VideoToolbox.framework */; };
 		1AC961CE244CBE0700077349 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC961CD244CBE0700077349 /* libiconv.tbd */; };
 		1AC961D0244CBE0F00077349 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC961CF244CBE0F00077349 /* libbz2.tbd */; };
@@ -56,9 +57,11 @@
 		1A1DEC0D244E0ABA008AE67A /* libavfilter.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libavfilter.a; sourceTree = "<group>"; };
 		1A1DEC0E244E0ABA008AE67A /* libswresample.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libswresample.a; sourceTree = "<group>"; };
 		1A1DEC16244E0CB4008AE67A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		1A41CCF5245754DB00CA190E /* xj_ffmpeg_manager.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = xj_ffmpeg_manager.cc; sourceTree = "<group>"; };
+		1A41CCF6245754DB00CA190E /* xj_ffmpeg_manager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = xj_ffmpeg_manager.h; sourceTree = "<group>"; };
 		1AC9613D244CBBB200077349 /* XJLive-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XJLive-Bridging-Header.h"; sourceTree = "<group>"; };
 		1AC9613E244CBBB300077349 /* XJFFmpegManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJFFmpegManager.h; sourceTree = "<group>"; };
-		1AC9613F244CBBB300077349 /* XJFFmpegManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJFFmpegManager.m; sourceTree = "<group>"; };
+		1AC9613F244CBBB300077349 /* XJFFmpegManager.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = XJFFmpegManager.mm; sourceTree = "<group>"; };
 		1AC96148244CBD8300077349 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
 		1AC96149244CBD8300077349 /* buffersrc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buffersrc.h; sourceTree = "<group>"; };
 		1AC9614A244CBD8300077349 /* buffersink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buffersink.h; sourceTree = "<group>"; };
@@ -229,8 +232,10 @@
 			isa = PBXGroup;
 			children = (
 				1AC9613E244CBBB300077349 /* XJFFmpegManager.h */,
-				1AC9613F244CBBB300077349 /* XJFFmpegManager.m */,
+				1AC9613F244CBBB300077349 /* XJFFmpegManager.mm */,
 				1AC9613D244CBBB200077349 /* XJLive-Bridging-Header.h */,
+				1A41CCF5245754DB00CA190E /* xj_ffmpeg_manager.cc */,
+				1A41CCF6245754DB00CA190E /* xj_ffmpeg_manager.h */,
 			);
 			path = ffmpeg;
 			sourceTree = "<group>";
@@ -647,7 +652,8 @@
 			files = (
 				1AE9E036244C8D31004C3829 /* AppDelegate.swift in Sources */,
 				1AE9E038244C8D31004C3829 /* SceneDelegate.swift in Sources */,
-				1AC96140244CBBB300077349 /* XJFFmpegManager.m in Sources */,
+				1A41CCF7245754DB00CA190E /* xj_ffmpeg_manager.cc in Sources */,
+				1AC96140244CBBB300077349 /* XJFFmpegManager.mm in Sources */,
 				1AE9E03A244C8D31004C3829 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -817,6 +823,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"XJLive/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
+				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/XJLive/framework/FFmpeg-iOS/include";
 				INFOPLIST_FILE = XJLive/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -841,6 +848,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"XJLive/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
+				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/XJLive/framework/FFmpeg-iOS/include";
 				INFOPLIST_FILE = XJLive/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
