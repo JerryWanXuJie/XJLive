@@ -11,9 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface XJFFmpegManager : NSObject
-
++ (XJFFmpegManager *)sharedManager;
 - (void)readAudio:(NSString*)audioUrl;
-
+- (void)recordAudio;
 @end
 
 NS_ASSUME_NONNULL_END
