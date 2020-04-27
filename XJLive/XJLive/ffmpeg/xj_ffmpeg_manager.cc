@@ -10,6 +10,7 @@
 #include <libavformat/avformat.h>
 #include <libavcodec/avcodec.h>
 #include <libavdevice/avdevice.h>
+#include <VideoToolbox/VideoToolbox.h>
 
 // FFmpeg采集音频数据
 /*
@@ -22,16 +23,13 @@
 */
 
 static const char* kInputFomartName = "avfoundation";
-namespace XJFFmpeg {
-class AudioManager {
-    
-AudioManager() {
+AudioManager::AudioManager() {
     av_log_set_level(AV_LOG_DEBUG);
     av_register_all();
     avformat_network_init();
 }
 
-void ReadAudio(const char*url) {
+void AudioManager::ReadAudio(const char*url) {
     // AV上下文
     AVFormatContext *context = avformat_alloc_context();
 
@@ -68,7 +66,7 @@ void ReadAudio(const char*url) {
     avformat_close_input(&context);
 }
 
-void RecordAudio() {
+void AudioManager::RecordAudio() {
     AVFormatContext *context = avformat_alloc_context();
     AVInputFormat *inputFormat = av_find_input_format(kInputFomartName);
     int ret = avformat_open_input(&context, ":0", inputFormat, nullptr);
@@ -81,7 +79,3 @@ void RecordAudio() {
     }
     avformat_close_input(&context);
 }
-    
-};
-}
-

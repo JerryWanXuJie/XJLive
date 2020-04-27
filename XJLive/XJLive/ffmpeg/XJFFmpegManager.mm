@@ -7,6 +7,7 @@
 //
 #import "XJFFmpegManager.h"
 #import "xj_ffmpeg_manager.h"
+#include "CppFile.hpp"
 
 @interface XJFFmpegManager()
 
@@ -36,11 +37,11 @@
 
 - (void)readAudio:(NSString*)audioUrl {
     // AV上下文
-//    self.audioManager->ReadAudio(audioUrl.UTF8String);
+    self.audioManager->ReadAudio(audioUrl.UTF8String);
 }
 
 - (void)recordAudio {
-//    self.audioManager->RecordAudio();
+    self.audioManager->RecordAudio();
 }
 
 @end
