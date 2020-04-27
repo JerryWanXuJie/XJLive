@@ -7,7 +7,6 @@
 //
 #import "XJFFmpegManager.h"
 #import "xj_ffmpeg_manager.h"
-#include "CppFile.hpp"
 
 @interface XJFFmpegManager()
 

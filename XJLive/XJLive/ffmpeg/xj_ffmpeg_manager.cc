@@ -7,10 +7,11 @@
 //
 
 #include "xj_ffmpeg_manager.h"
+extern "C" {
 #include <libavformat/avformat.h>
 #include <libavcodec/avcodec.h>
 #include <libavdevice/avdevice.h>
-#include <VideoToolbox/VideoToolbox.h>
+}
 
 // FFmpeg采集音频数据
 /*
