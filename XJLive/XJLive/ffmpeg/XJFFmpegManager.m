@@ -22,7 +22,7 @@
     2. 从设备中获取数据包，判断音频或者视频数据
     3. 输出到文件，保存音频数据
 */
-- (void)recoderAudio {
+- (void)readAudio:(NSString*)audioUrl {
     av_log_set_level(AV_LOG_DEBUG);
     // a. 注册设备
     av_register_all();
@@ -35,7 +35,7 @@
     AVInputFormat *inputFormat = av_find_input_format("avfoundation");
 
     // 设备类型 [video device]:[audio device]
-    char* url = "http://m801.music.126.net/20200427022407/1b3c7ea3d2d27b6efb78bc942803ccc6/jdymusic/obj/w5zDlMODwrDDiGjCn8Ky/2180586519/98b2/4d51/b6d3/c8c65de6a0bf053a2cd94d1f9473d069.mp3";
+    const char* url = audioUrl.UTF8String;
 
     // c. 打开音频设备
     int ret = avformat_open_input(&context, url, inputFormat, nil);
@@ -47,6 +47,21 @@
         NSLog(@"errors: %s", errors);
         return;
     }
+    
+    //read packet
+    /* 指针堆内存申请
+    AVPacket *p = av_packet_alloc();
+    av_packet_free(&p);
+     */
+    AVPacket pkt;
+    while ((ret = av_read_frame(context, &pkt)) == 0) {
+        printf("pkt size: %d, %p\n", pkt.size, pkt.data);
+        //释放
+        av_packet_unref(&pkt);
+    }
+    
+    //释放
+    avformat_close_input(&context);
 }
 
 
