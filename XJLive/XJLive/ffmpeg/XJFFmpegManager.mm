@@ -43,4 +43,8 @@
     self.audioManager->RecordAudio();
 }
 
+- (void)decoderStream:(NSString *)streamUrl {
+    self.audioManager->DecoderStream(streamUrl.UTF8String);
+}
+
 @end

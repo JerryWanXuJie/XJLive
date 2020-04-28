@@ -24,6 +24,10 @@ extern "C" {
 */
 
 static const char* kInputFomartName = "avfoundation";
+static int interrupt_callback(void* ctx) {
+    return 0;
+};
+
 AudioManager::AudioManager() {
     av_log_set_level(AV_LOG_DEBUG);
     av_register_all();
@@ -78,5 +82,37 @@ void AudioManager::RecordAudio() {
         avformat_close_input(&context);
         return;
     }
+    avformat_close_input(&context);
+}
+
+void AudioManager::DecoderStream(const char*url) {
+    //open url
+    AVFormatContext *context = avformat_alloc_context();
+    AVIOInterruptCB int_cb = {interrupt_callback, this};
+    context->interrupt_callback = int_cb;
+    avformat_open_input(&context, url, NULL, NULL);
+    
+    //find stream
+    avformat_find_stream_info(context, NULL);
+    for (int i=0; i<context->nb_streams; i++) {
+        AVStream *stream = context->streams[i];
+        if (stream->codecpar->codec_type == AVMEDIA_TYPE_AUDIO) {
+            //audio
+        } else if (stream->codecpar->codec_type == AVMEDIA_TYPE_VIDEO) {
+            //video
+        }
+        AVCodec *codec = avcodec_find_decoder(stream->codecpar->codec_id);
+        AVCodecContext *codectx = avcodec_alloc_context3(codec);
+        int ret = 0;
+        if (codec && (ret = avcodec_open2(codectx, codec, NULL)) == 0) {
+            
+        } else {
+            char errors[1024];
+            av_strerror(ret, errors, 1024);
+            printf("errors: %s", errors);
+            avformat_close_input(&context);
+        }
+    }
+    
     avformat_close_input(&context);
 }

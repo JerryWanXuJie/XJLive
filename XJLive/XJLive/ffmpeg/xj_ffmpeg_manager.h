@@ -13,6 +13,7 @@ class AudioManager {
 public:
     void ReadAudio(const char*url);
     void RecordAudio();
+    void DecoderStream(const char*url);
     
 public:
     AudioManager();
