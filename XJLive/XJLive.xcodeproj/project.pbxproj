@@ -17,6 +17,7 @@
 		1A1DEC17244E0CB4008AE67A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A1DEC16244E0CB4008AE67A /* AudioToolbox.framework */; };
 		1A41CCF7245754DB00CA190E /* xj_ffmpeg_manager.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1A41CCF5245754DB00CA190E /* xj_ffmpeg_manager.cc */; };
 		1A41CCFC24575EB800CA190E /* CppFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A41CCFA24575EB800CA190E /* CppFile.cpp */; };
+		1A41CD012458815200CA190E /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A41CD002458815200CA190E /* CoreMedia.framework */; };
 		1AC96140244CBBB300077349 /* XJFFmpegManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1AC9613F244CBBB300077349 /* XJFFmpegManager.mm */; };
 		1AC961CC244CBDD600077349 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC961CB244CBDD600077349 /* VideoToolbox.framework */; };
 		1AC961CE244CBE0700077349 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC961CD244CBE0700077349 /* libiconv.tbd */; };
@@ -63,6 +64,7 @@
 		1A41CCF824575E5000CA190E /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		1A41CCFA24575EB800CA190E /* CppFile.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CppFile.cpp; sourceTree = "<group>"; };
 		1A41CCFB24575EB800CA190E /* CppFile.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CppFile.hpp; sourceTree = "<group>"; };
+		1A41CD002458815200CA190E /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		1AC9613D244CBBB200077349 /* XJLive-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XJLive-Bridging-Header.h"; sourceTree = "<group>"; };
 		1AC9613E244CBBB300077349 /* XJFFmpegManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJFFmpegManager.h; sourceTree = "<group>"; };
 		1AC9613F244CBBB300077349 /* XJFFmpegManager.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = XJFFmpegManager.mm; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A41CD012458815200CA190E /* CoreMedia.framework in Frameworks */,
 				1A1DEC17244E0CB4008AE67A /* AudioToolbox.framework in Frameworks */,
 				1A1DEC10244E0ABA008AE67A /* libavutil.a in Frameworks */,
 				1A1DEC0F244E0ABA008AE67A /* libavdevice.a in Frameworks */,
@@ -452,6 +455,7 @@
 		1AC961CA244CBDD500077349 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1A41CD002458815200CA190E /* CoreMedia.framework */,
 				1A41CCF824575E5000CA190E /* libc++.tbd */,
 				1A1DEC16244E0CB4008AE67A /* AudioToolbox.framework */,
 				1AC961D1244CBE1400077349 /* libz.tbd */,
