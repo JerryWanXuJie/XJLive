@@ -10,7 +10,7 @@
 
 @interface XJFFmpegManager()
 
-@property AudioManager *audioManager;
+@property XJLive::AudioManager *audioManager;
 
 @end
 
@@ -20,7 +20,7 @@
 {
     self = [super init];
     if (self) {
-        self.audioManager = new AudioManager();
+        self.audioManager = new XJLive::AudioManager();
     }
     return self;
 }

@@ -28,6 +28,7 @@ static int interrupt_callback(void* ctx) {
     return 0;
 };
 
+namespace XJLive {
 AudioManager::AudioManager() {
     av_log_set_level(AV_LOG_DEBUG);
     av_register_all();
@@ -115,4 +116,5 @@ void AudioManager::DecoderStream(const char*url) {
     }
     
     avformat_close_input(&context);
+};
 }

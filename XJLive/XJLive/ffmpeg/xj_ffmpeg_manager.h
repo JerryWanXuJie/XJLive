@@ -9,6 +9,7 @@
 #ifndef xj_ffmpeg_manager_h
 #define xj_ffmpeg_manager_h
 
+namespace XJLive {
 class AudioManager {
 public:
     void ReadAudio(const char*url);
@@ -18,5 +19,6 @@ public:
 public:
     AudioManager();
 };
+}
 
 #endif /* xj_ffmpeg_manager_hpp */
